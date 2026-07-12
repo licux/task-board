@@ -1,0 +1,42 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+context: |
+  # プロダクト概要
+  task-board は個人ローカルで利用するカンバン方式のタスク管理 Web アプリ。
+  自分ひとりで使う前提であり、認証・マルチユーザー・同期などは対象外。
+
+  # 実行形態
+  - ローカルサーバ型 (ターミナルから起動、ブラウザで localhost にアクセス)
+  - 単一プロセス構成 (Next.js が UI とデータ永続化の両方を担う)
+  - 配布バイナリ化はしない (npm run dev 相当で起動)
+
+  # 技術スタック
+  - Next.js (App Router)
+  - TypeScript
+  - Tailwind CSS
+  - Server Actions (書き込み系 API はこれを使う。Route Handler は原則使わない)
+  - @dnd-kit (ドラッグ&ドロップ)
+
+  # データ永続化
+  - JSON ファイルにローカル保存
+  - 保存先: リポジトリ配下 ./data/tasks.json
+  - ./data/ は .gitignore 対象
+  - SQLite などの DB は現時点では採用しない (将来的な移行余地は残す)
+
+  # 進め方
+  - Spec-First で進める (実装より先に proposal / design / tasks / spec を書く)
+  - 設計判断の理由を残す:
+    * proposal.md には "何を作るか / 何を作らないか" とその Why
+    * design.md には "どう作るか / なぜその技術選択か" を ADR 形式で残す
+    * 却下した案とその理由も明記する
+  - 会話と成果物は基本日本語
+
+# Per-artifact rules (optional)
+rules:
+  design:
+    - 主要な技術選択については ADR セクションを設けて記録する
+    - ADR には「文脈・選択肢・決定・理由・却下した案の理由・トレードオフ」を含める
+  proposal:
+    - '"Non-goals" セクションを必ず含める'
